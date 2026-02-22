@@ -22,7 +22,7 @@ import (
 func NewCommand() *cobra.Command {
 	cmd := &cobra.Command{
 		Use:   "config",
-		Short: "manage proxmoxctl configuration",
+		Short: "Manage proxmoxctl configuration",
 	}
 
 	cmd.AddCommand(setCmd())

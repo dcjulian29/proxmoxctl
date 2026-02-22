@@ -32,7 +32,7 @@ import (
 func setCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "set",
-		Short: "interactively set server connection settings",
+		Short: "Interactively set server connection settings",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			reader := bufio.NewReader(os.Stdin)
 

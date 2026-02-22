@@ -27,7 +27,7 @@ import (
 func showCmd() *cobra.Command {
 	return &cobra.Command{
 		Use:   "show",
-		Short: "show current configuration (token is masked)",
+		Short: "Show current configuration (token is masked)",
 		RunE: func(cmd *cobra.Command, args []string) error {
 			serverName := viper.GetString(settings.KeyServerName)
 			serverURL := viper.GetString(settings.KeyServerURL)
