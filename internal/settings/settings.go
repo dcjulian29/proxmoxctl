@@ -52,7 +52,7 @@ func Save() error {
 		return fmt.Errorf("could not write config: %w", err)
 	}
 
-	fmt.Println(color.Info("\n✓ config saved to %s\n", configPath))
+	fmt.Println(color.Info("\nconfig saved to ", configPath))
 
 	return nil
 }
