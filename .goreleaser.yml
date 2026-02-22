@@ -1,0 +1,69 @@
+project_name: proxmoxctl
+version: 2
+before:
+  hooks:
+    - go mod tidy
+    - go mod verify
+builds:
+  - env:
+      - CGO_ENABLED=0
+    goos:
+      - linux
+      - windows
+      - darwin
+    goarch:
+      - amd64
+    ldflags:
+      - -s -w
+      - -X go.szostok.io/version.version={{.Version}}
+      - -X go.szostok.io/version.buildDate={{.Date}}
+
+archives:
+  - files:
+      - LICENSE
+    builds_info:
+      group: root
+      owner: root
+      mode: 0755
+    name_template: "dcjulian29.apps.proxmoxctl_{{ .Version }}_{{ .Os }}"
+    format_overrides:
+      - formats: [ "zip" ]
+        goos: windows
+
+nfpms:
+  - package_name: dcjulian29.apps.proxmoxctl
+    homepage: https://github.com/dcjulian29/proxmoxctl/
+    maintainer: Julian Easterling <julian@julianscorner.com>
+    license: Apache 2.0
+    description: |-
+      proxmoxctl is a full-featured command-line interface for managing Proxmox Virtual Environment (PVE) infrastructure.
+    formats:
+      - deb
+      - rpm
+    bindir: /usr/local/bin
+
+chocolateys:
+  - name: dcjulian29.apps.promoxctl
+    authors: Julian Easterling <julian@julianscorner.com>
+    project_url: https://github.com/dcjulian29/proxmoxctl
+    copyright: 2023 Julian Easterling julian@julianscorner.com
+    license_url: https://github.com/dcjulian29/proxmoxctl/blob/main/LICENSE
+    require_license_acceptance: false
+    bug_tracker_url: https://github.com/dcjulian29/proxmoxctl/issues
+    description: |
+      proxmoxctl is a full-featured command-line interface for managing Proxmox Virtual Environment (PVE) infrastructure.
+    skip_publish: true
+
+checksum:
+  name_template: 'checksums.txt'
+
+snapshot:
+  version_template: "{{ incpatch .Version }}-next"
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^admin:'
+      - '^docs:'
+      - '^test:'
