@@ -66,7 +66,10 @@ func init() {
 
 	cobra.OnInitialize(initConfig)
 
-	viper.BindPFlag(output.KeyOutputFormat, rootCmd.PersistentFlags().Lookup("output"))
+	if err := viper.BindPFlag(output.KeyOutputFormat, rootCmd.PersistentFlags().Lookup("output")); err != nil {
+		fmt.Fprintln(os.Stderr, color.Fatal(err))
+		os.Exit(1)
+	}
 
 	rootCmd.AddCommand(config.NewCommand())
 }

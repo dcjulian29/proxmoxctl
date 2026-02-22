@@ -34,8 +34,8 @@ func showCmd() *cobra.Command {
 			token := viper.GetString(settings.KeyAPIToken)
 
 			if serverURL == "" {
-				return fmt.Errorf("No configuration found. Run `proxmoxctl config set` to get started. %s", "")
-
+				err := fmt.Errorf("no configuration found. Run `proxmoxctl config set` to get started")
+				return err
 			}
 
 			masked := "****"

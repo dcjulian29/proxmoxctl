@@ -57,14 +57,14 @@ func JSON(v interface{}) error {
 func Table(headers []string, rows [][]string) {
 	w := tabwriter.NewWriter(os.Stdout, 0, 0, 2, ' ', 0)
 
-	fmt.Fprintln(w, strings.Join(headers, "\t"))
-	fmt.Fprintln(w, strings.Repeat("-", 60))
+	_, _ = fmt.Fprintln(w, strings.Join(headers, "\t"))
+	_, _ = fmt.Fprintln(w, strings.Repeat("-", 60))
 
 	for _, row := range rows {
-		fmt.Fprintln(w, strings.Join(row, "\t"))
+		_, _ = fmt.Fprintln(w, strings.Join(row, "\t"))
 	}
 
-	w.Flush()
+	_ = w.Flush()
 }
 
 func Success(msg string) {
