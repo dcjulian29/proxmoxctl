@@ -22,6 +22,7 @@ import (
 
 	"github.com/dcjulian29/proxmoxctl/cmd/config"
 	"github.com/dcjulian29/proxmoxctl/cmd/status"
+	"github.com/dcjulian29/proxmoxctl/cmd/user"
 	"github.com/dcjulian29/proxmoxctl/internal/color"
 	"github.com/dcjulian29/proxmoxctl/internal/output"
 	"github.com/spf13/cobra"
@@ -37,8 +38,11 @@ var rootCmd = &cobra.Command{
 	Long: `proxmoxctl is a full-featured command-line interface for managing Proxmox
 Virtual Environment (PVE) infrastructure via the Proxmox REST API.
 
+RESOURCES
+  user        Create and manage Proxmox users, passwords, and group membership
+
 OBSERVABILITY
-  syslog      Retrieve and filter the system journal from a node
+  status      Cluster health, per-node resource usage, resource inventory, and task history
 
 CONFIGURATION
   config      Set and display connection settings (server URL, username, API token)
@@ -79,6 +83,7 @@ func init() {
 
 	rootCmd.AddCommand(config.NewCommand())
 	rootCmd.AddCommand(status.NewCommand())
+	rootCmd.AddCommand(user.NewCommand())
 }
 
 func initConfig() {
