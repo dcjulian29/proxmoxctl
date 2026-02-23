@@ -21,6 +21,7 @@ import (
 	"path/filepath"
 
 	"github.com/dcjulian29/proxmoxctl/cmd/config"
+	"github.com/dcjulian29/proxmoxctl/cmd/status"
 	"github.com/dcjulian29/proxmoxctl/internal/color"
 	"github.com/dcjulian29/proxmoxctl/internal/output"
 	"github.com/spf13/cobra"
@@ -36,6 +37,9 @@ var rootCmd = &cobra.Command{
 	Long: `proxmoxctl is a full-featured command-line interface for managing Proxmox
 Virtual Environment (PVE) infrastructure via the Proxmox REST API.
 
+OBSERVABILITY
+  syslog      Retrieve and filter the system journal from a node
+
 CONFIGURATION
   config      Set and display connection settings (server URL, username, API token)
 
@@ -45,6 +49,8 @@ scripting and piping. Destructive operations prompt for confirmation unless
 the first available cluster node is used when omitted.
 
 Run 'proxmoxctl config set' to get started.`,
+	SilenceErrors: true,
+	SilenceUsage:  true,
 }
 
 func Execute() {
@@ -55,7 +61,7 @@ func Execute() {
 	)
 
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Fprintln(os.Stderr, color.Fatal(err))
+		fmt.Fprintln(os.Stderr, "\n"+color.Fatal(err))
 		os.Exit(1)
 	}
 }
@@ -72,6 +78,7 @@ func init() {
 	}
 
 	rootCmd.AddCommand(config.NewCommand())
+	rootCmd.AddCommand(status.NewCommand())
 }
 
 func initConfig() {
