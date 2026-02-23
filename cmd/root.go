@@ -21,6 +21,7 @@ import (
 	"path/filepath"
 
 	"github.com/dcjulian29/proxmoxctl/cmd/config"
+	"github.com/dcjulian29/proxmoxctl/cmd/group"
 	"github.com/dcjulian29/proxmoxctl/cmd/status"
 	"github.com/dcjulian29/proxmoxctl/cmd/user"
 	"github.com/dcjulian29/proxmoxctl/internal/color"
@@ -39,6 +40,7 @@ var rootCmd = &cobra.Command{
 Virtual Environment (PVE) infrastructure via the Proxmox REST API.
 
 RESOURCES
+  group       Create and manage Proxmox user groups
   user        Create and manage Proxmox users, passwords, and group membership
 
 OBSERVABILITY
@@ -82,6 +84,7 @@ func init() {
 	}
 
 	rootCmd.AddCommand(config.NewCommand())
+	rootCmd.AddCommand(group.NewCommand())
 	rootCmd.AddCommand(status.NewCommand())
 	rootCmd.AddCommand(user.NewCommand())
 }
