@@ -23,6 +23,7 @@ import (
 	"github.com/dcjulian29/proxmoxctl/cmd/config"
 	"github.com/dcjulian29/proxmoxctl/cmd/group"
 	"github.com/dcjulian29/proxmoxctl/cmd/status"
+	"github.com/dcjulian29/proxmoxctl/cmd/storage"
 	"github.com/dcjulian29/proxmoxctl/cmd/user"
 	"github.com/dcjulian29/proxmoxctl/internal/api"
 	"github.com/dcjulian29/proxmoxctl/internal/color"
@@ -42,6 +43,7 @@ Virtual Environment (PVE) infrastructure via the Proxmox REST API.
 
 RESOURCES
   group       Create and manage Proxmox user groups
+  storage     List storage pools, inspect configuration, and browse storage contents
   user        Create and manage Proxmox users, passwords, and group membership
 
 OBSERVABILITY
@@ -93,6 +95,7 @@ func init() {
 	rootCmd.AddCommand(config.NewCommand())
 	rootCmd.AddCommand(group.NewCommand())
 	rootCmd.AddCommand(status.NewCommand())
+	rootCmd.AddCommand(storage.NewCommand())
 	rootCmd.AddCommand(user.NewCommand())
 }
 
