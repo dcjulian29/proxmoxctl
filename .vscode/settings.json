@@ -45,6 +45,7 @@
     "UPID",
     "vmid",
     "vzdump",
+    "vztmpl",
     "xerrors",
     "xstrings"
   ]
