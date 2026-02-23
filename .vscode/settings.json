@@ -12,6 +12,7 @@
     "gopkg",
     "gosec",
     "gotenv",
+    "groupid",
     "hokaccha",
     "huandu",
     "imdario",
