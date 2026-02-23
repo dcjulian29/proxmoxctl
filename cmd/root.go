@@ -24,6 +24,7 @@ import (
 	"github.com/dcjulian29/proxmoxctl/cmd/group"
 	"github.com/dcjulian29/proxmoxctl/cmd/status"
 	"github.com/dcjulian29/proxmoxctl/cmd/user"
+	"github.com/dcjulian29/proxmoxctl/internal/api"
 	"github.com/dcjulian29/proxmoxctl/internal/color"
 	"github.com/dcjulian29/proxmoxctl/internal/output"
 	"github.com/spf13/cobra"
@@ -75,10 +76,16 @@ func Execute() {
 func init() {
 	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "specify configuration file")
 	rootCmd.PersistentFlags().StringP("output", "o", "table", "output format (table or json)")
+	rootCmd.PersistentFlags().Bool("insecure", false, "disable TLS certificate verification (not recommended)")
 
 	cobra.OnInitialize(initConfig)
 
 	if err := viper.BindPFlag(output.KeyOutputFormat, rootCmd.PersistentFlags().Lookup("output")); err != nil {
+		fmt.Fprintln(os.Stderr, color.Fatal(err))
+		os.Exit(1)
+	}
+
+	if err := viper.BindPFlag(api.KeyInsecureSkipVerify, rootCmd.PersistentFlags().Lookup("insecure")); err != nil {
 		fmt.Fprintln(os.Stderr, color.Fatal(err))
 		os.Exit(1)
 	}

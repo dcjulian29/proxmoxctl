@@ -166,11 +166,11 @@ func (c *Client) do(method, path string, body any, dest any) error {
 }
 
 func allowInsecure() *tls.Config {
-	insecure := viper.GetString(KeyInsecureSkipVerify)
+	insecure := viper.GetBool(KeyInsecureSkipVerify)
 
 	tls := &tls.Config{InsecureSkipVerify: false} //nolint:gosec
 
-	if insecure == "true" {
+	if insecure {
 		// Accept self-signed certs common on Proxmox homelab installs.
 		tls.InsecureSkipVerify = true //nolint:gosec
 	}
