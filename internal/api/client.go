@@ -141,7 +141,6 @@ func (c *Client) do(method, path string, body any, dest any) error {
 
 	resp, err := c.httpClient.Do(req)
 	if err != nil {
-		//return fmt.Errorf("%s %s:\n%w", method, url, err)
 		return fmt.Errorf("\n%w", err)
 	}
 
