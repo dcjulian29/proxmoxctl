@@ -20,6 +20,7 @@ import (
 	"os"
 	"path/filepath"
 
+	"github.com/dcjulian29/proxmoxctl/cmd/backup"
 	"github.com/dcjulian29/proxmoxctl/cmd/config"
 	"github.com/dcjulian29/proxmoxctl/cmd/group"
 	"github.com/dcjulian29/proxmoxctl/cmd/status"
@@ -42,6 +43,7 @@ var rootCmd = &cobra.Command{
 Virtual Environment (PVE) infrastructure via the Proxmox REST API.
 
 RESOURCES
+  backup      On-demand and scheduled backups (vzdump), restore, and backup file management
   group       Create and manage Proxmox user groups
   storage     List storage pools, inspect configuration, and browse storage contents
   user        Create and manage Proxmox users, passwords, and group membership
@@ -92,6 +94,7 @@ func init() {
 		os.Exit(1)
 	}
 
+	rootCmd.AddCommand(backup.NewCommand())
 	rootCmd.AddCommand(config.NewCommand())
 	rootCmd.AddCommand(group.NewCommand())
 	rootCmd.AddCommand(status.NewCommand())
