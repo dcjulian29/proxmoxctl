@@ -50,7 +50,7 @@ func createCmd() *cobra.Command {
 				payload["description"] = description
 			}
 
-			if vmstate && gtype == string(guestVM) {
+			if vmstate && gtype == "qemu" {
 				payload["vmstate"] = 1
 			}
 
