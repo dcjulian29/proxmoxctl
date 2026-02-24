@@ -24,10 +24,12 @@ import (
 	"github.com/dcjulian29/proxmoxctl/cmd/clone"
 	"github.com/dcjulian29/proxmoxctl/cmd/config"
 	"github.com/dcjulian29/proxmoxctl/cmd/group"
+	"github.com/dcjulian29/proxmoxctl/cmd/lxc"
 	"github.com/dcjulian29/proxmoxctl/cmd/snapshot"
 	"github.com/dcjulian29/proxmoxctl/cmd/status"
 	"github.com/dcjulian29/proxmoxctl/cmd/storage"
 	"github.com/dcjulian29/proxmoxctl/cmd/user"
+	"github.com/dcjulian29/proxmoxctl/cmd/vm"
 	"github.com/dcjulian29/proxmoxctl/internal/api"
 	"github.com/dcjulian29/proxmoxctl/internal/color"
 	"github.com/dcjulian29/proxmoxctl/internal/output"
@@ -48,12 +50,15 @@ RESOURCES
   backup      On-demand and scheduled backups (vzdump), restore, and backup file management
   clone       Full or linked clones of VMs and containers, optionally from a snapshot
   group       Create and manage Proxmox user groups
+  lxc         Create, modify, delete, start, and stop LXC containers
   snapshot    Create, list, rollback, and delete snapshots for VMs and containers
   storage     List storage pools, inspect configuration, and browse storage contents
   user        Create and manage Proxmox users, passwords, and group membership
+  vm          Create, modify, delete, start, and stop KVM virtual machines
 
 OBSERVABILITY
   status      Cluster health, per-node resource usage, resource inventory, and task history
+  version     Show tool version and check for updates
 
 CONFIGURATION
   config      Set and display connection settings (server URL, username, API token)
@@ -102,10 +107,12 @@ func init() {
 	rootCmd.AddCommand(clone.NewCommand())
 	rootCmd.AddCommand(config.NewCommand())
 	rootCmd.AddCommand(group.NewCommand())
+	rootCmd.AddCommand(lxc.NewCommand())
 	rootCmd.AddCommand(status.NewCommand())
 	rootCmd.AddCommand(snapshot.NewCommand())
 	rootCmd.AddCommand(storage.NewCommand())
 	rootCmd.AddCommand(user.NewCommand())
+	rootCmd.AddCommand(vm.NewCommand())
 }
 
 func initConfig() {
