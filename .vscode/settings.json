@@ -51,6 +51,7 @@
     "vzdump",
     "vztmpl",
     "xerrors",
-    "xstrings"
+    "xstrings",
+    "zstd"
   ]
 }
