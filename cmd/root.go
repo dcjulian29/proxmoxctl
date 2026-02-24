@@ -21,6 +21,7 @@ import (
 	"path/filepath"
 
 	"github.com/dcjulian29/proxmoxctl/cmd/backup"
+	"github.com/dcjulian29/proxmoxctl/cmd/clone"
 	"github.com/dcjulian29/proxmoxctl/cmd/config"
 	"github.com/dcjulian29/proxmoxctl/cmd/group"
 	"github.com/dcjulian29/proxmoxctl/cmd/snapshot"
@@ -45,6 +46,7 @@ Virtual Environment (PVE) infrastructure via the Proxmox REST API.
 
 RESOURCES
   backup      On-demand and scheduled backups (vzdump), restore, and backup file management
+  clone       Full or linked clones of VMs and containers, optionally from a snapshot
   group       Create and manage Proxmox user groups
   snapshot    Create, list, rollback, and delete snapshots for VMs and containers
   storage     List storage pools, inspect configuration, and browse storage contents
@@ -97,6 +99,7 @@ func init() {
 	}
 
 	rootCmd.AddCommand(backup.NewCommand())
+	rootCmd.AddCommand(clone.NewCommand())
 	rootCmd.AddCommand(config.NewCommand())
 	rootCmd.AddCommand(group.NewCommand())
 	rootCmd.AddCommand(status.NewCommand())
