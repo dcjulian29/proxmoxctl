@@ -47,6 +47,7 @@
     "UPID",
     "vmid",
     "vmids",
+    "vmstate",
     "vzdump",
     "vztmpl",
     "xerrors",
