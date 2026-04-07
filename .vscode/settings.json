@@ -9,6 +9,7 @@
     "fsnotify",
     "goarch",
     "goccy",
+    "golangci",
     "gopkg",
     "gosec",
     "gotenv",
