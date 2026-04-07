@@ -1,9 +1,10 @@
-project_name: proxmoxctl
+---
 version: 2
 before:
   hooks:
     - go mod tidy
     - go mod verify
+
 builds:
   - env:
       - CGO_ENABLED=0
@@ -46,13 +47,15 @@ chocolateys:
   - name: dcjulian29.apps.promoxctl
     authors: Julian Easterling <julian@julianscorner.com>
     project_url: https://github.com/dcjulian29/proxmoxctl
-    copyright: 2023 Julian Easterling julian@julianscorner.com
+    copyright: 2026 Julian Easterling julian@julianscorner.com
     license_url: https://github.com/dcjulian29/proxmoxctl/blob/main/LICENSE
     require_license_acceptance: false
     bug_tracker_url: https://github.com/dcjulian29/proxmoxctl/issues
     description: |
       proxmoxctl is a full-featured command-line interface for managing Proxmox Virtual Environment (PVE) infrastructure.
-    skip_publish: true
+    api_key: "{{ .Env.CHOCO_API_KEY}}"
+    source_repo: "https://www.myget.org/F/dcjulian29-chocolatey/"
+    skip_publish: false
 
 checksum:
   name_template: 'checksums.txt'
